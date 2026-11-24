@@ -57,7 +57,7 @@ Claude Desktop starts local servers by command, so it reaches LessCode through [
   "mcpServers": {
     "lesscode": {
       "command": "npx",
-      "args": ["mcp-remote", "http://127.0.0.1:7230/$mcp/", "--allow-http", "--header", "Authorization:${LESSCODE_TOKEN}"],
+      "args": ["-y", "mcp-remote@0.16.5", "http://127.0.0.1:7230/$mcp/", "--allow-http", "--header", "Authorization:${LESSCODE_TOKEN}"],
       "env": { "LESSCODE_TOKEN": "Bearer <token>" }
     }
   }
