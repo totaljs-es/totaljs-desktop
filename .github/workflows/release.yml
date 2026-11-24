@@ -2,7 +2,8 @@
 # this repository. Only by hand (workflow_dispatch): no pull request can start it, and it
 # keeps no cache, so nothing of the source stays in this public repository. The source is
 # read with a read-only deploy key (SRC_DEPLOY_KEY). The Mac app is signed with the
-# Developer ID and notarized with the secrets of the organization.
+# Developer ID and notarized with the secrets of the organization. Windows (x64, ARM64) and
+# Linux (x64, ARM64) are built too; the Windows installers are not signed yet.
 
 name: Release
 
@@ -110,7 +111,7 @@ jobs:
           spctl --assess --type open --context context:primary-signature --verbose=2 "$DMG"
           mkdir -p "$RUNNER_TEMP/out"
           cp "$DMG" "$RUNNER_TEMP/out/${TITLE}-${VERSION}-mac.dmg"
-          cd "$RUNNER_TEMP/out" && shasum -a 256 *.dmg > SHA256SUMS.txt && cat SHA256SUMS.txt
+          ls -la "$RUNNER_TEMP/out"
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -118,17 +119,144 @@ jobs:
           path: ${{ runner.temp }}/out/
           retention-days: 3
 
+  windows:
+    name: ${{ inputs.app }} for Windows ${{ matrix.arch }}
+    runs-on: windows-2022
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x64
+            target: x86_64-pc-windows-msvc
+            bundles: nsis,msi
+          - arch: arm64
+            target: aarch64-pc-windows-msvc
+            bundles: nsis
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: totaljs-es/totaljs-desktop-src
+          ref: ${{ inputs.ref }}
+          ssh-key: ${{ secrets.SRC_DEPLOY_KEY }}
+          persist-credentials: false
+          path: src
+
+      - name: Rust for ${{ matrix.target }}
+        working-directory: src
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustup target add ${{ matrix.target }}
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: Packages
+        working-directory: src
+        run: npm ci --no-audit --no-fund --loglevel=error
+
+      - name: Build
+        working-directory: src
+        run: npm run tauri -w @totaldesktop/${{ inputs.app }} -- build --target ${{ matrix.target }} --bundles ${{ matrix.bundles }}
+
+      - name: Name the installers
+        working-directory: src
+        run: |
+          meta() { node -p "require('./apps/${{ inputs.app }}/$1').$2"; }
+          name="$(meta src-tauri/tauri.conf.json productName)-$(meta package.json version)-windows-${{ matrix.arch }}"
+          bundle=target/${{ matrix.target }}/release/bundle
+          mkdir -p "$RUNNER_TEMP/out"
+          cp "$bundle"/nsis/*.exe "$RUNNER_TEMP/out/$name-setup.exe"
+          if ls "$bundle"/msi/*.msi >/dev/null 2>&1; then cp "$bundle"/msi/*.msi "$RUNNER_TEMP/out/$name.msi"; fi
+          ls -la "$RUNNER_TEMP/out"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: windows-${{ matrix.arch }}
+          path: ${{ runner.temp }}/out/
+          retention-days: 3
+
+  linux:
+    name: ${{ inputs.app }} for Linux ${{ matrix.deb }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-22.04
+            deb: amd64
+            rpm: x86_64
+          - runner: ubuntu-22.04-arm
+            deb: arm64
+            rpm: aarch64
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: totaljs-es/totaljs-desktop-src
+          ref: ${{ inputs.ref }}
+          ssh-key: ${{ secrets.SRC_DEPLOY_KEY }}
+          persist-credentials: false
+          path: src
+
+      - name: Libraries of the web view
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev libxdo-dev patchelf rpm
+
+      - name: Rust
+        working-directory: src
+        run: rustup show active-toolchain || rustup toolchain install
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: Packages
+        working-directory: src
+        run: npm ci --no-audit --no-fund --loglevel=error
+
+      - name: Build
+        working-directory: src
+        run: npm run tauri -w @totaldesktop/${{ inputs.app }} -- build --bundles deb,rpm,appimage
+
+      - name: Name the packages
+        working-directory: src
+        run: |
+          meta() { node -p "require('./apps/${{ inputs.app }}/$1').$2"; }
+          name="$(meta src-tauri/tauri.conf.json productName)-$(meta package.json version)-linux"
+          bundle=target/release/bundle
+          mkdir -p "$RUNNER_TEMP/out"
+          cp "$bundle"/deb/*.deb "$RUNNER_TEMP/out/$name-${{ matrix.deb }}.deb"
+          cp "$bundle"/rpm/*.rpm "$RUNNER_TEMP/out/$name-${{ matrix.rpm }}.rpm"
+          cp "$bundle"/appimage/*.AppImage "$RUNNER_TEMP/out/$name-${{ matrix.rpm }}.AppImage"
+          ls -la "$RUNNER_TEMP/out"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: linux-${{ matrix.deb }}
+          path: ${{ runner.temp }}/out/
+          retention-days: 3
+
   publish:
     name: Publish the release
-    needs: mac
+    needs: [mac, windows, linux]
     runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
-          name: mac
           path: out
+          merge-multiple: true
+
+      - name: SHA-256 of every file
+        run: cd out && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
 
       - name: Release ${{ inputs.app }}-v${{ needs.mac.outputs.version }}
         env:
@@ -137,14 +265,17 @@ jobs:
           TITLE: ${{ needs.mac.outputs.title }} ${{ needs.mac.outputs.version }}
         run: |
           cat > notes.md <<NOTES
-          **${TITLE}** for Mac (Apple silicon and Intel), signed and notarized by Apple.
+          **${TITLE}** for Mac, Windows and Linux, on Intel/AMD (x64) and ARM64.
 
-          Open the disk image and drag the app to Applications.
+          - **Mac** (Apple silicon and Intel): open the \`.dmg\` and drag the app to Applications. Signed and notarized by Apple.
+          - **Windows**: run the \`-setup.exe\` (or the \`.msi\` on x64). The installer is not signed yet: the first time, SmartScreen says it protected your PC; choose **More info → Run anyway**.
+          - **Linux**: the \`.deb\` for Debian and Ubuntu, the \`.rpm\` for Fedora and openSUSE, or the \`.AppImage\` for any distribution.
 
           The SHA-256 of each file is in SHA256SUMS.txt.
           NOTES
           if gh release view "$TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh release upload "$TAG" out/* --clobber -R "$GITHUB_REPOSITORY"
+            gh release edit "$TAG" --notes-file notes.md -R "$GITHUB_REPOSITORY"
           else
             gh release create "$TAG" out/* --title "$TITLE" --notes-file notes.md -R "$GITHUB_REPOSITORY"
           fi
