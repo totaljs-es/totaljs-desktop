@@ -14,21 +14,21 @@
 
 ### Automation
 
-| | App | What it does | Download |
-| :---: | --- | --- | --- |
-| <img src="lesscode/icon.png" width="40" height="40" alt="" /> | **[LessCode](lesscode/)**<br>0.1.0 | Design and run Total.js flows on your computer, and let your AI build them with you through MCP. | **macOS** [Apple silicon and Intel](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-mac.dmg)<br>**Windows** [x64](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-windows-x64-setup.exe) · [x64 MSI](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-windows-x64.msi) · [ARM64](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-windows-arm64-setup.exe)<br>**Linux x64** [deb](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-amd64.deb) · [rpm](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-x86_64.rpm) · [AppImage](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-x86_64.AppImage)<br>**Linux ARM64** [deb](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-arm64.deb) · [rpm](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-aarch64.rpm) · [AppImage](https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-aarch64.AppImage) |
+| | App | What it does | |
+| :---: | --- | --- | :---: |
+| <a href="lesscode/"><img src="lesscode/icon.png" width="40" height="40" alt="" /></a> | **[LessCode](lesscode/)**<br>0.1.0 | Design and run Total.js flows on your computer, and let your AI build them with you through MCP. | **[Download →](lesscode/#download)** |
 
 ### Code
 
-| | App | What it does | Download |
-| :---: | --- | --- | --- |
-| <img src="totalcode/icon.png" width="40" height="40" alt="" /> | **[TotalCode](totalcode/)**<br>0.1.0 | Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain. | **macOS** [Apple silicon and Intel](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-mac.dmg)<br>**Windows** [x64](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-windows-x64-setup.exe) · [x64 MSI](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-windows-x64.msi) · [ARM64](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-windows-arm64-setup.exe)<br>**Linux x64** [deb](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-amd64.deb) · [rpm](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-x86_64.rpm) · [AppImage](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-x86_64.AppImage)<br>**Linux ARM64** [deb](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-arm64.deb) · [rpm](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-aarch64.rpm) · [AppImage](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-aarch64.AppImage) |
+| | App | What it does | |
+| :---: | --- | --- | :---: |
+| <a href="totalcode/"><img src="totalcode/icon.png" width="40" height="40" alt="" /></a> | **[TotalCode](totalcode/)**<br>0.1.0 | Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain. | **[Download →](totalcode/#download)** |
 
 ### System
 
-| | App | What it does | Download |
-| :---: | --- | --- | --- |
-| <img src="totalfetch/icon.png" width="40" height="40" alt="" /> | **[TotalFetch](totalfetch/)**<br>0.1.0 | A summary of your computer in your terminal, with your logo, your colour and your lines. | **macOS** [Apple silicon and Intel](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-mac.dmg)<br>**Windows** [x64](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-windows-x64-setup.exe) · [x64 MSI](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-windows-x64.msi) · [ARM64](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-windows-arm64-setup.exe)<br>**Linux x64** [deb](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-amd64.deb) · [rpm](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-x86_64.rpm) · [AppImage](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-x86_64.AppImage)<br>**Linux ARM64** [deb](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-arm64.deb) · [rpm](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-aarch64.rpm) · [AppImage](https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-aarch64.AppImage) |
+| | App | What it does | |
+| :---: | --- | --- | :---: |
+| <a href="totalfetch/"><img src="totalfetch/icon.png" width="40" height="40" alt="" /></a> | **[TotalFetch](totalfetch/)**<br>0.1.0 | A summary of your computer in your terminal, with your logo, your colour and your lines. | **[Download →](totalfetch/#download)** |
 
 <!-- /catalog -->
 

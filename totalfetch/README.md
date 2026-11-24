@@ -11,6 +11,8 @@
   <img src="https://img.shields.io/badge/systems-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-0078d4" alt="macOS · Windows · Linux" />
 </p>
 
+<h2 align="center" id="download">Download</h2>
+
 <p align="center">
   <b>macOS</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-mac.dmg">Apple silicon and Intel</a><br>
   <b>Windows</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-windows-x64-setup.exe">x64</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-windows-x64.msi">x64 MSI</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-windows-arm64-setup.exe">ARM64</a><br>
