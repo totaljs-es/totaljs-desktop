@@ -11,7 +11,12 @@
   <img src="https://img.shields.io/badge/systems-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-0078d4" alt="macOS · Windows · Linux" />
 </p>
 
-<p align="center"><b>Download:</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-mac.dmg">macOS</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/tag/totalcode-latest">Every system</a></p>
+<p align="center">
+  <b>macOS</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-mac.dmg">Apple silicon and Intel</a><br>
+  <b>Windows</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-windows-x64-setup.exe">x64</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-windows-x64.msi">x64 MSI</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-windows-arm64-setup.exe">ARM64</a><br>
+  <b>Linux x64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-amd64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-x86_64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-x86_64.AppImage">AppImage</a><br>
+  <b>Linux ARM64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-arm64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-aarch64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalcode-latest/TotalCode-linux-aarch64.AppImage">AppImage</a>
+</p>
 <!-- /header -->
 
 TotalCode is the desktop app of [Total.js Code](https://github.com/totaljs/code) 2, the editor of Total.js in your browser: your Code instances in windows of their own, on macOS, Windows and Linux.

@@ -11,7 +11,12 @@
   <img src="https://img.shields.io/badge/systems-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-0078d4" alt="macOS · Windows · Linux" />
 </p>
 
-<p align="center"><b>Download:</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-mac.dmg">macOS</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/tag/lesscode-latest">Every system</a></p>
+<p align="center">
+  <b>macOS</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-mac.dmg">Apple silicon and Intel</a><br>
+  <b>Windows</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-windows-x64-setup.exe">x64</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-windows-x64.msi">x64 MSI</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-windows-arm64-setup.exe">ARM64</a><br>
+  <b>Linux x64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-amd64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-x86_64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-x86_64.AppImage">AppImage</a><br>
+  <b>Linux ARM64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-arm64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-aarch64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-aarch64.AppImage">AppImage</a>
+</p>
 <!-- /header -->
 
 LessCode is the visual designer of [Total.js](https://www.totaljs.com) flows as a desktop app for Windows, Linux and macOS. Drop components on the canvas, connect them and watch real data move through your design. Node.js and Total.js come inside the app: nothing to install, nothing to set up.
