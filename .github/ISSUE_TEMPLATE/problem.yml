@@ -1,0 +1,41 @@
+# Written by `cargo xtask catalog` from the apps of the catalog.
+name: A problem with an app
+description: Something does not work as it should.
+body:
+  - type: dropdown
+    id: app
+    attributes:
+      label: App
+      options:
+        - LessCode
+        - TotalCode
+        - TotalFetch
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version of the app
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: system
+    attributes:
+      label: System
+      options:
+        - macOS (Apple silicon)
+        - macOS (Intel)
+        - Windows (x64)
+        - Windows (ARM64)
+        - Linux (x64)
+        - Linux (ARM64)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what happened instead.
+    validations:
+      required: true

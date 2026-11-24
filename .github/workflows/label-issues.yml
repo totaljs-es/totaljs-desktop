@@ -1,0 +1,31 @@
+# Labels each issue with its app (app:lesscode…), from the App field of the issue form, so
+# the problems of one app are one click away. It reads the issue as data and runs no code
+# of it.
+
+name: Label issues
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+            const match = body.match(/^### App\s*\n+\s*([A-Za-z0-9 ._-]{1,40})\s*$/m);
+            if (!match) return;
+            const label = 'app:' + match[1].trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            try {
+              await github.rest.issues.getLabel({ ...context.repo, name: label });
+            } catch {
+              await github.rest.issues.createLabel({ ...context.repo, name: label, color: '9ad959', description: 'Issues of ' + match[1].trim() });
+            }
+            await github.rest.issues.addLabels({ ...context.repo, issue_number: context.payload.issue.number, labels: [label] });

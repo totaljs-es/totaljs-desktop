@@ -70,6 +70,15 @@ jobs:
           echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
           echo "title=$(node -p "require('./src-tauri/tauri.conf.json').productName")" >> "$GITHUB_OUTPUT"
 
+      - name: Notes from the changelog of the app
+        env:
+          APP: ${{ inputs.app }}
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          awk -v head="## $VERSION" '$0 == head { take = 1; next } /^## / { take = 0 } take' "src/apps/$APP/CHANGELOG.md" > "$RUNNER_TEMP/out/changes.md"
+          if [ ! -s "$RUNNER_TEMP/out/changes.md" ]; then echo "::error::apps/$APP/CHANGELOG.md has no section ## $VERSION"; exit 1; fi
+
       - name: Rust for both Mac processors
         working-directory: src
         run: |
@@ -258,26 +267,65 @@ jobs:
           merge-multiple: true
 
       - name: SHA-256 of every file
-        run: cd out && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
+        run: |
+          mv out/changes.md changes.md
+          cd out && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
 
       - name: Release ${{ inputs.app }}-v${{ needs.mac.outputs.version }}
         env:
           GH_TOKEN: ${{ github.token }}
+          APP: ${{ inputs.app }}
+          VERSION: ${{ needs.mac.outputs.version }}
           TAG: ${{ inputs.app }}-v${{ needs.mac.outputs.version }}
           TITLE: ${{ needs.mac.outputs.title }} ${{ needs.mac.outputs.version }}
         run: |
-          cat > notes.md <<NOTES
-          **${TITLE}** for Mac, Windows and Linux, on Intel/AMD (x64) and ARM64.
-
-          - **Mac** (Apple silicon and Intel): open the \`.dmg\` and drag the app to Applications. Signed and notarized by Apple.
-          - **Windows**: run the \`-setup.exe\` (or the \`.msi\` on x64). The installer is not signed yet: the first time, SmartScreen says it protected your PC; choose **More info → Run anyway**.
-          - **Linux**: the \`.deb\` for Debian and Ubuntu, the \`.rpm\` for Fedora and openSUSE, or the \`.AppImage\` for any distribution.
-
-          The SHA-256 of each file is in SHA256SUMS.txt.
-          NOTES
+          {
+            echo "## What is new"
+            echo
+            cat changes.md
+            echo
+            echo "## Install"
+            echo
+            echo "- **macOS** (Apple silicon and Intel): open the \`.dmg\` and drag the app to Applications. Signed and notarized by Apple."
+            echo "- **Windows**: run the \`-setup.exe\` (or the \`.msi\` on x64). The installer is not signed yet: the first time, SmartScreen says it protected your PC; choose **More info → Run anyway**."
+            echo "- **Linux**: the \`.deb\` for Debian and Ubuntu, the \`.rpm\` for Fedora and openSUSE, or the \`.AppImage\` for any distribution."
+            echo
+            echo "The SHA-256 of each file is in SHA256SUMS.txt."
+          } > notes.md
           if gh release view "$TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh release upload "$TAG" out/* --clobber -R "$GITHUB_REPOSITORY"
             gh release edit "$TAG" --notes-file notes.md -R "$GITHUB_REPOSITORY"
           else
             gh release create "$TAG" out/* --title "$TITLE" --notes-file notes.md -R "$GITHUB_REPOSITORY"
+          fi
+
+      # The same files without the version in their names, in a release that never changes
+      # its address: the download links of the pages always give the last version.
+      - name: Latest of ${{ inputs.app }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          APP: ${{ inputs.app }}
+          VERSION: ${{ needs.mac.outputs.version }}
+          NAME: ${{ needs.mac.outputs.title }}
+        run: |
+          mkdir latest
+          for file in out/*.dmg out/*.exe out/*.msi out/*.deb out/*.rpm out/*.AppImage; do
+            [ -e "$file" ] || continue
+            name="$(basename "$file")"
+            cp "$file" "latest/${name/-$VERSION/}"
+          done
+          (cd latest && sha256sum * > SHA256SUMS.txt)
+          {
+            echo "The last version of **$NAME**: **$VERSION**. These addresses never change, so links to them always give the last version."
+            echo
+            echo "Every version, with its notes: [releases of $NAME](https://github.com/$GITHUB_REPOSITORY/releases?q=$APP-v)."
+            echo
+            sed -n '/^## Install/,$p' notes.md
+          } > latest.md
+          LATEST="$APP-latest"
+          if gh release view "$LATEST" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$LATEST" latest/* --clobber -R "$GITHUB_REPOSITORY"
+            gh release edit "$LATEST" --title "$NAME (latest: $VERSION)" --notes-file latest.md -R "$GITHUB_REPOSITORY"
+          else
+            gh release create "$LATEST" latest/* --title "$NAME (latest: $VERSION)" --notes-file latest.md --latest=false -R "$GITHUB_REPOSITORY"
           fi
