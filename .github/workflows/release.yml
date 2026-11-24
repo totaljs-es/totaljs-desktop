@@ -1,0 +1,150 @@
+# Builds an app of the catalog from the private source and publishes it in the releases of
+# this repository. Only by hand (workflow_dispatch): no pull request can start it, and it
+# keeps no cache, so nothing of the source stays in this public repository. The source is
+# read with a read-only deploy key (SRC_DEPLOY_KEY). The Mac app is signed with the
+# Developer ID and notarized with the secrets of the organization.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: App to publish
+        required: true
+        type: choice
+        options:
+          - totalcode
+      ref:
+        description: Commit, branch or tag of totaljs-desktop-src
+        required: true
+        default: main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.app }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_QUIET: true
+  CARGO_TERM_COLOR: never
+
+jobs:
+  mac:
+    name: ${{ inputs.app }} for Mac
+    runs-on: macos-15
+    timeout-minutes: 60
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      title: ${{ steps.meta.outputs.title }}
+    steps:
+      - name: The secrets are there
+        env:
+          SRC_DEPLOY_KEY: ${{ secrets.SRC_DEPLOY_KEY }}
+          MAC_CERTIFICATE: ${{ secrets.MAC_CERTIFICATE }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+        run: |
+          missing=""
+          [ -n "$SRC_DEPLOY_KEY" ] || missing="$missing SRC_DEPLOY_KEY"
+          [ -n "$MAC_CERTIFICATE" ] || missing="$missing MAC_CERTIFICATE"
+          [ -n "$APPLE_ID" ] || missing="$missing APPLE_ID"
+          if [ -n "$missing" ]; then echo "::error::Missing secrets:$missing"; exit 1; fi
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: totaljs-es/totaljs-desktop-src
+          ref: ${{ inputs.ref }}
+          ssh-key: ${{ secrets.SRC_DEPLOY_KEY }}
+          persist-credentials: false
+          path: src
+
+      - name: Name and version
+        id: meta
+        working-directory: src/apps/${{ inputs.app }}
+        run: |
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+          echo "title=$(node -p "require('./src-tauri/tauri.conf.json').productName")" >> "$GITHUB_OUTPUT"
+
+      - name: Rust for both Mac processors
+        working-directory: src
+        run: |
+          rustup show active-toolchain || rustup toolchain install
+          rustup target add aarch64-apple-darwin x86_64-apple-darwin
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: Packages
+        working-directory: src
+        run: npm ci --no-audit --no-fund --loglevel=error
+
+      - name: Build, sign and notarize
+        working-directory: src
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.MAC_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.MAC_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: "Developer ID Application: Gera G. Guiles (PA3YPNH922)"
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: npm run tauri -w @totaldesktop/${{ inputs.app }} -- build --target universal-apple-darwin --bundles app,dmg
+
+      - name: Notarize the disk image and check both
+        working-directory: src
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TITLE: ${{ steps.meta.outputs.title }}
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          APP="$(ls -d target/universal-apple-darwin/release/bundle/macos/*.app | head -1)"
+          DMG="$(ls target/universal-apple-darwin/release/bundle/dmg/*.dmg | head -1)"
+          xcrun notarytool submit "$DMG" --apple-id "$APPLE_ID" --password "$APPLE_PASSWORD" --team-id "$APPLE_TEAM_ID" --wait
+          xcrun stapler staple "$DMG"
+          xcrun stapler validate "$DMG"
+          spctl --assess --type execute --verbose=2 "$APP"
+          spctl --assess --type open --context context:primary-signature --verbose=2 "$DMG"
+          mkdir -p "$RUNNER_TEMP/out"
+          cp "$DMG" "$RUNNER_TEMP/out/${TITLE}-${VERSION}-mac.dmg"
+          cd "$RUNNER_TEMP/out" && shasum -a 256 *.dmg > SHA256SUMS.txt && cat SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: mac
+          path: ${{ runner.temp }}/out/
+          retention-days: 3
+
+  publish:
+    name: Publish the release
+    needs: mac
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: mac
+          path: out
+
+      - name: Release ${{ inputs.app }}-v${{ needs.mac.outputs.version }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.app }}-v${{ needs.mac.outputs.version }}
+          TITLE: ${{ needs.mac.outputs.title }} ${{ needs.mac.outputs.version }}
+        run: |
+          cat > notes.md <<NOTES
+          **${TITLE}** for Mac (Apple silicon and Intel), signed and notarized by Apple.
+
+          Open the disk image and drag the app to Applications.
+
+          The SHA-256 of each file is in SHA256SUMS.txt.
+          NOTES
+          if gh release view "$TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" out/* --clobber -R "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" out/* --title "$TITLE" --notes-file notes.md -R "$GITHUB_REPOSITORY"
+          fi
