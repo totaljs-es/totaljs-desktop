@@ -117,7 +117,7 @@ await api.Flow_save({ input: { design: flow.design } });
 
 ## Download
 
-LessCode is on its way to [Releases](https://github.com/totaljs-es/totaljs-desktop/releases): for macOS (Apple silicon and Intel, signed and notarized), Windows and Linux, on x64 and ARM64. The Windows installers are not signed yet: the first time, SmartScreen says it protected your PC; choose **More info → Run anyway**.
+The Windows installers are not signed yet: the first time, SmartScreen says it protected your PC; choose **More info → Run anyway**.
 
 ## Report a problem
 
