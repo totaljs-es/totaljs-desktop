@@ -2,7 +2,14 @@
 
 Free professional apps by Spanish Total.js for Windows, Linux, macOS, iOS, iPadOS and Android.
 
-The apps are on their way. This page will list each app with what it does, screenshots and downloads.
+## The apps
+
+| App | What it does |
+| --- | --- |
+| [TotalCode](https://github.com/totaljs-es/totaljs-desktop/releases/tag/totalcode-v0.1.0) | Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain. |
+| [LessCode](lesscode/) | Design and run Total.js flows on your computer, and let your AI build them with you through MCP. |
+
+More are on their way. Downloads are in [Releases](https://github.com/totaljs-es/totaljs-desktop/releases).
 
 ## What every app offers
 
