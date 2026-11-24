@@ -14,21 +14,21 @@
 
 ### Automation
 
-| | App | What it does |
-| :---: | --- | --- |
-| <a href="lesscode/"><img src="lesscode/icon.png" width="28" height="28" alt="" /></a> | **[LessCode](lesscode/)** | Design and run Total.js flows on your computer, and let your AI build them with you through MCP. |
+| App | What it does |
+| --- | --- |
+| <a href="lesscode/"><img src="lesscode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;**[LessCode](lesscode/)** | Design and run Total.js flows on your computer, and let your AI build them with you through MCP. |
 
 ### Code
 
-| | App | What it does |
-| :---: | --- | --- |
-| <a href="totalcode/"><img src="totalcode/icon.png" width="28" height="28" alt="" /></a> | **[TotalCode](totalcode/)** | Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain. |
+| App | What it does |
+| --- | --- |
+| <a href="totalcode/"><img src="totalcode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;**[TotalCode](totalcode/)** | Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain. |
 
 ### System
 
-| | App | What it does |
-| :---: | --- | --- |
-| <a href="totalfetch/"><img src="totalfetch/icon.png" width="28" height="28" alt="" /></a> | **[TotalFetch](totalfetch/)** | A summary of your computer in your terminal, with your logo, your colour and your lines. |
+| App | What it does |
+| --- | --- |
+| <a href="totalfetch/"><img src="totalfetch/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;**[TotalFetch](totalfetch/)** | A summary of your computer in your terminal, with your logo, your colour and your lines. |
 
 <!-- /catalog -->
 
