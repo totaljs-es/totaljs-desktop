@@ -17,6 +17,7 @@ on:
         options:
           - totalcode
           - totalfetch
+          - lesscode
       ref:
         description: Commit, branch or tag of totaljs-desktop-src
         required: true
