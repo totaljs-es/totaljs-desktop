@@ -16,6 +16,7 @@ on:
         type: choice
         options:
           - totalcode
+          - totalfetch
       ref:
         description: Commit, branch or tag of totaljs-desktop-src
         required: true
