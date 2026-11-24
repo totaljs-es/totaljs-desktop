@@ -29,10 +29,10 @@ LessCode takes the port `7230` when it is free, or the next free one up to `7239
 
 ### Claude Code
 
-Keep the single quotes: without them the shell reads `$mcp` as a variable and drops it.
+Keep the single quotes: without them the shell reads `$mcp` as a variable and drops it. `--scope user` makes LessCode available in every project.
 
 ```bash
-claude mcp add --transport http lesscode 'http://127.0.0.1:7230/$mcp/' --header 'Authorization: Bearer <token>'
+claude mcp add --scope user --transport http lesscode 'http://127.0.0.1:7230/$mcp/' --header 'Authorization: Bearer <token>'
 ```
 
 ### Cursor and other MCP clients
