@@ -7,7 +7,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-0.1.0-9ad959" alt="Version 0.1.0" />
-  <img src="https://img.shields.io/badge/status-beta-555" alt="Status: beta" />
+  <img src="https://img.shields.io/badge/status-ready-2ea44f" alt="Status: ready" />
   <img src="https://img.shields.io/badge/systems-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-0078d4" alt="macOS · Windows · Linux" />
 </p>
 
