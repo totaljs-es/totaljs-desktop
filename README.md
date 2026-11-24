@@ -12,23 +12,15 @@
 
 <!-- catalog -->
 
-### Automation
-
-| App | What it does |
-| --- | --- |
-| <a href="lesscode/"><img src="lesscode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;**[LessCode](lesscode/)** | Design and run Total.js flows on your computer, and let your AI build them with you through MCP. |
-
-### Code
-
-| App | What it does |
-| --- | --- |
-| <a href="totalcode/"><img src="totalcode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;**[TotalCode](totalcode/)** | Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain. |
-
-### System
-
-| App | What it does |
-| --- | --- |
-| <a href="totalfetch/"><img src="totalfetch/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;**[TotalFetch](totalfetch/)** | A summary of your computer in your terminal, with your logo, your colour and your lines. |
+<table>
+  <tr><th align="left" width="220">App</th><th align="left">What it does</th></tr>
+  <tr><td colspan="2"><b>Automation</b></td></tr>
+  <tr><td width="220"><a href="lesscode/"><img src="lesscode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="lesscode/"><b>LessCode</b></a></td><td>Design and run Total.js flows on your computer, and let your AI build them with you through MCP.</td></tr>
+  <tr><td colspan="2"><b>Code</b></td></tr>
+  <tr><td width="220"><a href="totalcode/"><img src="totalcode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalcode/"><b>TotalCode</b></a></td><td>Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain.</td></tr>
+  <tr><td colspan="2"><b>System</b></td></tr>
+  <tr><td width="220"><a href="totalfetch/"><img src="totalfetch/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalfetch/"><b>TotalFetch</b></a></td><td>A summary of your computer in your terminal, with your logo, your colour and your lines.</td></tr>
+</table>
 
 <!-- /catalog -->
 
