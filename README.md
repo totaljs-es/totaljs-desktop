@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/totaljs-es/toto/main/assets/brand/favicon-192.png" width="128" height="128" alt="Toto, the fox of Total.js" /></p>
+
 <h1 align="center">TotalDesktop</h1>
 
 <p align="center">Free professional apps by Spanish Total.js for macOS, Windows and Linux, with tablet versions where they make sense.</p>
