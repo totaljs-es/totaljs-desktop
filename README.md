@@ -2,7 +2,7 @@
 
 <h1 align="center">TotalDesktop</h1>
 
-<p align="center">Free professional apps by Spanish Total.js for macOS, Windows and Linux, with tablet versions where they make sense.</p>
+<p align="center">Free professional apps for the Total.js community, available on macOS, Windows, and Linux, with tablet versions where appropriate.</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/price-free-9ad959" alt="Free" />
