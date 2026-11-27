@@ -22,6 +22,7 @@
   <tr><td width="220"><a href="totalcode/"><img src="totalcode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalcode/"><b>TotalCode</b></a></td><td>Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain.</td></tr>
   <tr><td colspan="2"><b>System</b></td></tr>
   <tr><td width="220"><a href="totalfetch/"><img src="totalfetch/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalfetch/"><b>TotalFetch</b></a></td><td>A summary of your computer in your terminal, with your logo, your colour and your lines.</td></tr>
+  <tr><td width="220"><a href="totalfiles/"><img src="totalfiles/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalfiles/"><b>TotalFiles</b></a></td><td>Browse local folders and publish selected files over SSH.</td></tr>
 </table>
 
 <!-- /catalog -->
