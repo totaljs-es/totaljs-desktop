@@ -11,6 +11,7 @@ body:
         - TotalCode
         - TotalFetch
         - TotalFiles
+        - TotalSQL
     validations:
       required: true
   - type: input
