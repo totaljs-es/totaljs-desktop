@@ -22,6 +22,8 @@
   <tr><td width="220"><a href="totalcode/"><img src="totalcode/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalcode/"><b>TotalCode</b></a></td><td>Your Total.js Code instances in windows of their own, with the local copy of files and your passwords in the keychain.</td></tr>
   <tr><td colspan="2"><b>Databases</b></td></tr>
   <tr><td width="220"><a href="totalsql/"><img src="totalsql/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalsql/"><b>TotalSQL</b></a></td><td>PostgreSQL, MySQL, MariaDB, SQL Server and SQLite in one window.</td></tr>
+  <tr><td colspan="2"><b>Media</b></td></tr>
+  <tr><td width="220"><a href="totalimages/"><img src="totalimages/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalimages/"><b>TotalImages</b></a></td><td>Make pictures lighter, resize them and change their format.</td></tr>
   <tr><td colspan="2"><b>System</b></td></tr>
   <tr><td width="220"><a href="totalfetch/"><img src="totalfetch/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalfetch/"><b>TotalFetch</b></a></td><td>A summary of your computer in your terminal, with your logo, your colour and your lines.</td></tr>
   <tr><td width="220"><a href="totalfiles/"><img src="totalfiles/icon.png" width="28" height="28" align="absmiddle" alt="" /></a>&nbsp;&nbsp;<a href="totalfiles/"><b>TotalFiles</b></a></td><td>Browse local folders and publish selected files over SSH.</td></tr>
