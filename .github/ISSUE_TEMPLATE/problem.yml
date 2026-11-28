@@ -12,6 +12,7 @@ body:
         - TotalFetch
         - TotalFiles
         - TotalSQL
+        - TotalImages
     validations:
       required: true
   - type: input

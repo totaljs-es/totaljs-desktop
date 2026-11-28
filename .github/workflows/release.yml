@@ -20,6 +20,7 @@ on:
           - lesscode
           - totalfiles
           - totalsql
+          - totalimages
       ref:
         description: Commit, branch or tag of totaljs-desktop-src
         required: true
