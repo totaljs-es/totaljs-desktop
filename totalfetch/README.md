@@ -19,6 +19,8 @@
   <b>Linux x64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-amd64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-x86_64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-x86_64.AppImage">AppImage</a><br>
   <b>Linux ARM64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-arm64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-aarch64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfetch-latest/TotalFetch-linux-aarch64.AppImage">AppImage</a>
 </p>
+
+<p align="center">On a Mac with <a href="https://brew.sh">Homebrew</a>: <code>brew trust totaljs-es/tap &amp;&amp; brew install --cask totaljs-es/tap/totalfetch</code></p>
 <!-- /header -->
 
 TotalFetch puts a summary of your computer in your terminal: the kind of greeting that tells you where you are before you type the first command. The app sets it up with a live preview; the `totalfetch` command shows it in milliseconds.

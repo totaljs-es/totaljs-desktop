@@ -19,6 +19,8 @@
   <b>Linux x64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalimages-latest/TotalImages-linux-amd64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalimages-latest/TotalImages-linux-x86_64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalimages-latest/TotalImages-linux-x86_64.AppImage">AppImage</a><br>
   <b>Linux ARM64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalimages-latest/TotalImages-linux-arm64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalimages-latest/TotalImages-linux-aarch64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalimages-latest/TotalImages-linux-aarch64.AppImage">AppImage</a>
 </p>
+
+<p align="center">On a Mac with <a href="https://brew.sh">Homebrew</a>: <code>brew trust totaljs-es/tap &amp;&amp; brew install --cask totaljs-es/tap/totalimages</code></p>
 <!-- /header -->
 
 TotalImages makes pictures lighter: it packs them tighter, makes them smaller and writes them in another format, one by one or by the folder.

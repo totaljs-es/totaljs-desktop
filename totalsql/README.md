@@ -19,6 +19,8 @@
   <b>Linux x64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalsql-latest/TotalSQL-linux-amd64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalsql-latest/TotalSQL-linux-x86_64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalsql-latest/TotalSQL-linux-x86_64.AppImage">AppImage</a><br>
   <b>Linux ARM64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalsql-latest/TotalSQL-linux-arm64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalsql-latest/TotalSQL-linux-aarch64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalsql-latest/TotalSQL-linux-aarch64.AppImage">AppImage</a>
 </p>
+
+<p align="center">On a Mac with <a href="https://brew.sh">Homebrew</a>: <code>brew trust totaljs-es/tap &amp;&amp; brew install --cask totaljs-es/tap/totalsql</code></p>
 <!-- /header -->
 
 TotalSQL is a client for SQL databases: PostgreSQL, MySQL, MariaDB, SQL Server and SQLite in one window, to read and change their rows, their structure and everything else they hold.

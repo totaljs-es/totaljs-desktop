@@ -19,6 +19,8 @@
   <b>Linux x64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-amd64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-x86_64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-x86_64.AppImage">AppImage</a><br>
   <b>Linux ARM64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-arm64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-aarch64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/lesscode-latest/LessCode-linux-aarch64.AppImage">AppImage</a>
 </p>
+
+<p align="center">On a Mac with <a href="https://brew.sh">Homebrew</a>: <code>brew trust totaljs-es/tap &amp;&amp; brew install --cask totaljs-es/tap/lesscode</code></p>
 <!-- /header -->
 
 LessCode is the visual designer of [Total.js](https://www.totaljs.com) flows as a desktop app for Windows, Linux and macOS. Drop components on the canvas, connect them and watch real data move through your design. Node.js and Total.js come inside the app: nothing to install, nothing to set up.

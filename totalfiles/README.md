@@ -19,6 +19,8 @@
   <b>Linux x64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfiles-latest/TotalFiles-linux-amd64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfiles-latest/TotalFiles-linux-x86_64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfiles-latest/TotalFiles-linux-x86_64.AppImage">AppImage</a><br>
   <b>Linux ARM64</b> <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfiles-latest/TotalFiles-linux-arm64.deb">deb</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfiles-latest/TotalFiles-linux-aarch64.rpm">rpm</a> · <a href="https://github.com/totaljs-es/totaljs-desktop/releases/download/totalfiles-latest/TotalFiles-linux-aarch64.AppImage">AppImage</a>
 </p>
+
+<p align="center">On a Mac with <a href="https://brew.sh">Homebrew</a>: <code>brew trust totaljs-es/tap &amp;&amp; brew install --cask totaljs-es/tap/totalfiles</code></p>
 <!-- /header -->
 
 TotalFiles is a file manager with two panels: two folders side by side, on your computer or on a server over SFTP, to copy, move and publish files between them.
