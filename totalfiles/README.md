@@ -6,7 +6,7 @@
 <p align="center">Browse local folders and publish selected files over SSH.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.1-9ad959" alt="Version 0.1.1" />
+  <img src="https://img.shields.io/badge/version-0.1.2-9ad959" alt="Version 0.1.2" />
   <img src="https://img.shields.io/badge/status-ready-2ea44f" alt="Status: ready" />
   <img src="https://img.shields.io/badge/systems-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-0078d4" alt="macOS · Windows · Linux" />
 </p>
